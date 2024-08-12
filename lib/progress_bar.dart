@@ -54,11 +54,12 @@ class _ProgressBarExampleState extends State<ProgressBarExample> {
                   end: Alignment.centerRight,
                 ),
               ),
-              height: 8,
+              height: 10,
               child: LinearProgressIndicator(
                 value: _progress,
                 backgroundColor: Colors.transparent,
-                valueColor: AlwaysStoppedAnimation<Color>(Colors.transparent),
+                valueColor: AlwaysStoppedAnimation<Color>(
+                    Colors.blue), // Set a visible color
               ),
             ),
             const SizedBox(height: 30),
@@ -68,8 +69,8 @@ class _ProgressBarExampleState extends State<ProgressBarExample> {
             ),
             const SizedBox(height: 10),
             SizedBox(
-              width: 80,
-              height: 80,
+              width: 100,
+              height: 100,
               child: CustomPaint(
                 painter: GradientCircularProgressPainter(_progress),
                 child: Center(
@@ -124,7 +125,7 @@ class GradientCircularProgressPainter extends CustomPainter {
       ..strokeCap = StrokeCap.round;
 
     final rect = Rect.fromLTWH(0, 0, size.width, size.height);
-    final gradient =  SweepGradient(
+    final gradient = SweepGradient(
       colors: [Colors.blue, Colors.purple],
       startAngle: 0.0,
       endAngle: 2 * math.pi,
