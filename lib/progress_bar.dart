@@ -18,7 +18,7 @@ class _ProgressBarExampleState extends State<ProgressBarExample> {
   }
 
   void _simulateProgress() {
-    Future.delayed(const Duration(seconds: 1), () {
+    Future.delayed(const Duration(seconds: 2), () {
       setState(() {
         _progress += 0.2;
         if (_progress < 1.0) {
@@ -44,7 +44,7 @@ class _ProgressBarExampleState extends State<ProgressBarExample> {
               'Linear Progress Indicator',
               style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
             ),
-            const SizedBox(height: 10),
+            const SizedBox(height: 8),
             Container(
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(8),
@@ -54,12 +54,12 @@ class _ProgressBarExampleState extends State<ProgressBarExample> {
                   end: Alignment.centerRight,
                 ),
               ),
-              height: 10,
+              height: 8,
               child: LinearProgressIndicator(
                 value: _progress,
                 backgroundColor: Colors.transparent,
-                valueColor: AlwaysStoppedAnimation<Color>(
-                    Colors.blue), // Set a visible color
+                valueColor: const AlwaysStoppedAnimation<Color>(
+                    Colors.redAccent),
               ),
             ),
             const SizedBox(height: 30),
@@ -125,17 +125,12 @@ class GradientCircularProgressPainter extends CustomPainter {
       ..strokeCap = StrokeCap.round;
 
     final rect = Rect.fromLTWH(0, 0, size.width, size.height);
-    final gradient = SweepGradient(
+    final gradient =  SweepGradient(
       colors: [Colors.blue, Colors.purple],
       startAngle: 0.0,
       endAngle: 2 * math.pi,
     );
 
-    final gradientPaint = Paint()
-      ..shader = gradient.createShader(rect)
-      ..strokeWidth = 8
-      ..style = PaintingStyle.stroke
-      ..strokeCap = StrokeCap.round;
 
     canvas.drawCircle(size.center(Offset.zero), size.width / 2, paint);
 
